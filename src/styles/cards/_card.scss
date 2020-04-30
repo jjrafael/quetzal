@@ -1,0 +1,219 @@
+.card {
+	margin: 5px 4px;
+	transition: all 0.3s ease;
+	position: relative;
+	@include wh(200px, 350px);
+	&.--pointer {
+		cursor: pointer;
+	}
+	&.card-reg {
+		width: 200px;
+  	height: 140px;
+  	padding: 10px;
+		.card-front,
+		.card-back {
+			width: 200px;
+    	height: 140px;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+    	text-align: center;
+    	.card-back__emblem {
+    		font-size: $fs-l;
+    	}
+		}
+	}
+	.card-inner {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		margin: 10px;
+		background: none;
+	    width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        border-radius: 8px;
+        @include center-flex();
+        h3 {
+        	color: $midnight;
+        }
+	}
+	.card-back {
+		background: $card-back-splash;
+		border-radius: 8px;
+		@include wh(181px, 330px);
+		padding: 10px;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		transition: all 0.4s ease;
+		z-index: 2;
+		@include center-flex();
+		&:after {
+			content: '';
+			position: absolute;
+			top: 3px;
+			left: 3px;
+			margin: 10px;
+			border: 1px solid $coral;
+			background: none;
+	    width: calc(100% - 30px);
+      height: calc(100% - 30px);
+      border-radius: 8px;
+		};
+		&__emblem {
+			font-family: $shrikhand;
+			font-size: $fs-xl;
+			text-align: center;
+			padding: 0px 3px;
+			@include text-gradient-soltice();
+		}
+	}
+	.card-front {
+		background: $card-front-splash;
+		border-radius: 8px;
+		@include wh(181px, 330px);
+		padding: 10px;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		transform: rotateY(180deg);
+		transition: all 0.4s ease;
+		z-index: 1;
+		@include center-flex();
+	}
+	
+	&:not(.nonflippable):hover {
+		.card-front {
+			transform: rotateY(0deg);
+			transition: transform 0.4s ease 0s, z-index 0.2s;
+			z-index: 2;
+		}
+		.card-back {
+			transform: rotateY(180deg);
+			z-index: 1;
+		}
+	};
+	&.nonflippable {
+		&.nonflip-up {
+			.card-front {
+				transform: rotateY(180deg);
+				transition: transform 0.4s ease 0s, z-index 0.2s;
+				z-index: 1;
+			}
+			.card-back {
+				transform: rotateY(0deg);
+				z-index: 2;
+			}
+		}
+	}
+}
+
+/*flipover default*/
+.card.--flipover {
+	.card-front {
+		transform: rotateY(0deg);
+		transition: transform 0.4s ease 0s, z-index 0.2s;
+		z-index: 2;
+	}
+	.card-back {
+		transform: rotateY(180deg);
+		z-index: 1;
+	}
+	&:not(.nonflippable):hover {
+		.card-front {
+			transform: rotateY(180deg);
+			transition: transform 0.4s ease 0s, z-index 0.2s;
+			z-index: 1;
+		}
+		.card-back {
+			transform: rotateY(0deg);
+			z-index: 2;
+		}
+	};
+}
+
+/*card types*/
+.card.members-card {
+	float: left;
+	margin: 0px 10px 10px 0px;
+	.card-front,
+	.card-back {
+		text-align: center;
+    line-height: 140px;
+    font-size: $fs-s;
+    left: 0px;
+	}
+	.card-back {
+		color: $white;
+		font-size: $fs-l;
+	}
+}
+
+.card.alias-card {
+	float: left;
+	margin: 0px 10px 10px 0px;
+	.card-front {
+		background: $cream;
+	}
+	.card-back {
+		color: $white;
+		background: $peach;
+		&:after { border-color: $white; }
+		&.--jinx {
+			background: $coral;
+		}
+	}
+}
+
+.card.grid-card {
+	float: left;
+	margin: 0px 10px 10px 0px;
+	.card-front {
+		background: $cream;
+	}
+	.card-back {
+		color: $white;
+		background: $peach;
+		&:after { border-color: $white; }
+		&.--jinx {
+			background: $coral;
+		}
+	}
+}
+
+.card.deck-card {
+	float: left;
+	margin: 0px 10px 10px 0px;
+	transition: all 0.3s ease;
+	.card-front {
+		background: $cream;
+	}
+	.card-back {
+		color: $white;
+		background: $peach;
+		&:after { border-color: $white; }
+		&.--jinx {
+			background: $coral;
+		}
+	}
+	&.--selected {
+		transform: scale(0.8);
+		.card-front {
+			background: $midnight;
+			color: $white;
+		}
+	}
+}
+
+
+.cardscol {
+	float: left;
+	transition: all 0.3s ease;
+	&.--roulette {
+		transition: all 0.3s ease;
+  		animation: roulette 10s;
+	}
+	&:hover.--roulette {
+		animation: none!important;
+		margin-top: 0px;
+	};
+}

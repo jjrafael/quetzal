@@ -1,0 +1,89 @@
+.scorebar {
+	width: 50%;
+	position: relative;
+	float: left;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	transition: all 0.6s ease;
+	overflow: hidden;
+	&__avatar {
+		float: left;
+		width: 40px;
+		height: $header-height;
+		background: $black-10;
+		text-align: center;
+    line-height: 58px;
+    font-size: $fs-s;
+    color: $black-75;
+	}
+	&__round-score {
+		float: left;
+		font-size: $fs-m;
+		font-family: $shrikhand;
+		padding: 5px 20px;
+		width: auto;
+	    height: 40px;
+		line-height: 40px;
+		.over-score {
+			font-size: $fs-xs;
+		}
+	}
+	&__info {
+		float: left;
+		width: 200px;
+		height: 30px;
+		padding: 10px;
+		display: flex;
+	}
+	&__name {
+		font-size: $fs-s;
+    line-height: 32px;
+    width: auto;
+    margin: 0px 10px;
+	}
+	&__trophies {
+		display: flex;
+		flex-direction: row;
+		height: 25px;
+		$color: $midnight;
+		.icon {
+	    width: 20px;
+	    height: 25px;
+	    float: left;
+	    margin: 2px 2px 0px 2px;
+	    text-align: center;
+	    line-height: 27px;
+		}
+	}
+	&__violations {
+		display: flex;
+		flex-direction: row;
+		height: 25px;
+		color: $coral;
+		.icon {
+	    width: 20px;
+	    height: 25px;
+	    float: left;
+	    margin: 2px 2px 0px 2px;
+	    text-align: center;
+	    line-height: 27px;
+	    font-size: 22px;
+		}
+	}
+}
+
+/*responsiveness*/
+
+@include mobile {
+	.scorebar {
+		width: calc(50% - 20px);
+		.scorebar__avatar {
+			display: none;
+		}
+		.scorebar__name {
+	    font-size: $fs-s;
+	    text-transform: uppercase;
+		}
+	}
+}

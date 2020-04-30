@@ -1,0 +1,37 @@
+.loading-overlay{
+	display: none;
+}
+
+.loading-overlay.active {
+	background: rgba(0,0,0,0.5);
+	@include gradient-midnight(45deg, 0.75);
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 100;
+    @include center-flex();
+    color: white;
+    overflow: hidden;
+}
+
+.loading-dots {
+	@include center-flex();
+	div {
+		transition: all 0.3s ease;
+		float: left;
+		padding: 0px 2px;
+		animation: sway-up 1.2s ease infinite;
+		@include delay-child-sequence(4);
+	}
+}
+
+/*responsiveness*/
+
+@include mobile {
+	.loading-overlay h2 {
+		font-size: 35px;
+	}
+}

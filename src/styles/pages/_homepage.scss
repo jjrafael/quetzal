@@ -1,0 +1,103 @@
+.home-page {
+	@include gradient-summer();
+	@include sq(100%);
+	@include center-flex();
+	.forms-single {
+		@include fade-out();
+		&.active {
+			display: block;
+			@include fade-in();
+		}
+	}
+
+	.col-header {
+		height: 100px;
+	}
+	
+	.board {
+		width: 467px;
+		padding: 10px;
+		.card:nth-child(even) {
+			margin-right: 0px;
+		};
+	}
+}
+
+.gameSettings {
+	&.--col2 {
+		.input__group {
+			@include group();
+			margin-top: 20px;
+		}
+		.input__wrapper {
+			float: left;
+			width: 50%;
+			margin-bottom: 10px;
+			.input__quantity {
+				font-size: $fs-xs;
+		    padding: 0px 10px;
+    		margin-bottom: 0px;
+			}
+			.input__label {
+				padding-left: 0px;
+			}
+		}
+		.inputwrap__togglebtn {
+			margin-bottom: 0px;
+			.input__label {
+				margin-left: 10px;
+				width: 57%;
+			}
+		}
+	}
+}
+
+
+/*responsiveness*/
+
+@include mobile {
+	.home-page {
+		.col-2 {
+			.col {
+				height: calc(50% - 60px);
+			}
+			.col-body.--center {
+				height: auto;
+				.forms-single {
+					padding-top: 60px;
+				}
+			}
+		}
+		.col-header {
+			height: 70px;
+		}
+		.heading-wrapper {
+			float: right;
+	    font-size: 20px;
+    	line-height: 50px;
+    	text-align: left;
+			h2 {
+				float: left;
+				font-size: $fs-s;
+				font-family: $josefin;
+				text-align: left;
+				padding-left: 20px;
+		    margin-right: 20px;
+			}
+		}
+		.board, .board.active {
+			width: calc(100% - 70px);
+    	height: 150px;
+    	margin-top: 0px;
+    	.card {
+    		margin-bottom: 0px;
+    		margin-right: 10px!important;
+    		.card-front,
+    		.card-back {
+			    width: 200px;
+    			height: 130px;
+    		}
+    	}
+		}
+	}
+}

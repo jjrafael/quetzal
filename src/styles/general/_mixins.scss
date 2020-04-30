@@ -1,0 +1,154 @@
+@mixin sq ($value) {
+  width: $value;
+  height: $value;
+}
+
+@mixin wh ($w, $h) {
+  width: $w;
+  height: $h;
+}
+
+@mixin no-pads () {
+	margin: 0px;
+	padding: 0px;
+}
+
+@mixin center-flex () {
+	display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin center-auto () {
+	display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@mixin group () {
+	&:after {
+	  content: "";
+	  clear: both;
+	  display: table;
+	}
+}
+
+@mixin shadow ($hor: 0px, $ver: 0px, $transparency: 0.5) {
+	box-shadow: $hor $ver 20px -3px rgba(0,0,0,$transparency);
+}
+
+/*presets animations*/
+
+@mixin delay-child-sequence ($len: 50, $interval: 0.2) {
+	@for $i from 1 through $len {
+	    &:nth-child(#{$i}n) {
+	        animation-delay: #{$i * $interval}s;
+	    }
+	}
+}
+
+@mixin delay-show ($delay: 0.6s) {
+	opacity: 1;
+	display: block;
+	transition: display 0s ease, opacity 0.6s ease 0.3s;
+}
+
+@mixin delay-hide ($delay: 0.6s) {
+	opacity: 0;
+	display: none;
+	transition: display 0s ease 0.6s, opacity 0.6s ease;
+}
+
+@mixin fade-in () {
+	animation: fade-in 0.3s ease forwards;
+}
+
+@mixin fade-out () {
+	animation: fade-out 0.3s ease forwards;
+}
+
+@mixin flip-up () {
+	animation: flip-up 0.3s ease forwards;
+}
+
+
+/*gradients*/
+@mixin gradient-soltice ($deg: 45deg, $transparency: 1) {
+	background: rgb(105,2,115);
+	background: linear-gradient($deg, rgba(105,2,115, $transparency) 0%, rgba(141,3,65, $transparency) 100%);
+}
+
+@mixin gradient-summer ($deg: 45deg, $transparency: 1) {
+	background: rgb(34,193,195);
+	background: linear-gradient($deg, rgba(34,193,195, $transparency) 0%, rgba(253,187,45, $transparency) 100%);
+}
+
+@mixin gradient-sunglaze ($deg: 45deg, $transparency: 1) {
+	background: rgb(34,193,195);
+	background: linear-gradient($deg, rgba(34,193,195, $transparency) 0%, rgba(253,187,45, $transparency) 25%, rgba(253,140,45, $transparency) 100%);
+}
+
+@mixin gradient-sunbreeze ($deg: 45deg, $transparency: 1) {
+	background: rgb(34,193,195);
+	background: linear-gradient($deg, rgba(88,195,34, $transparency) 0%, rgba(34,193,195, $transparency) 75%, rgba(45,253,167, $transparency) 100%);
+}
+
+@mixin gradient-sunset ($deg: 45deg, $transparency: 1) {
+	background: rgb(131,58,180);
+	background: linear-gradient($deg, rgba(131,58,180, $transparency) 31%, rgba(253,29,29, $transparency) 62%, rgba(252,176,69,1) 100%);
+}
+
+@mixin gradient-midnight ($deg: 45deg, $transparency: 1) {
+	background: rgb(20,0,49);
+background: linear-gradient($deg, rgba(20,0,49, $transparency) 0%, rgba(25,208,222,$transparency) 100%);
+}
+
+
+/*text gradients*/
+
+@mixin text-gradient-soltice () {
+	background: transparent;
+	background: -webkit-linear-gradient(45deg, rgba(105,2,115,1) 0%, rgba(141,3,65,1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+@mixin text-gradient-sunbreeze () {
+	background: transparent;
+	background: -webkit-linear-gradient(45deg, rgba(0,184,104,1) 0%, rgba(0,158,49,1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+@mixin text-gradient-sunglaze () {
+	background: transparent;
+	background: -webkit-linear-gradient(45deg, rgba(253,187,45,1) 0%, rgba(239,33,15,1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+
+/*pseudo underlines*/
+@mixin focus-switch-underlines () {
+	transition: all 0.6s ease;
+	&:after, &:before {
+		content: '';
+		position: absolute;
+		bottom: 0px;
+		width: 100%;
+		height: 1px;
+		transition: all 0.6s ease;
+		@include gradient-midnight();
+	}
+	&:before {
+		width: 0%;
+		@include gradient-summer();
+	}
+	&:focus:after {
+		width: 0%;
+	}
+	&:focus:before {
+		width: 100%;
+		transition-delay: 1s;
+	}
+}

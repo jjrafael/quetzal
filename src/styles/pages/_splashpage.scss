@@ -1,0 +1,60 @@
+.splash-page {
+	@include sq(100%);
+	background: $bg-splash;
+	@include gradient-sunset();
+	@include center-flex();
+}
+
+.splash-tilt {
+	@include wh(150%, 100%);
+	transform: rotateZ(45deg);
+	position: absolute;
+  top: -20%;
+  left: 10%;
+	z-index: 0;
+}
+
+.splash-logo-wrapper {
+	z-index: 10;
+	width: 600px;
+	height: 150px;
+	text-align: center;
+	position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+.logo-typography {
+	font-family: $shrikhand;
+	color: $logo-color;
+	font-size: $fs-xxl;
+	text-align: center;
+    display: block;
+	span {
+		float: left;
+		transition: all 0.3s ease;
+		&:hover {
+			color: $midnight;
+		};
+	}
+}
+
+/*responsiveness*/
+
+@include mobile {
+	.splash-tilt {
+		width: 750px;
+		.cardscol:not(.flippy) {
+			display: none;
+		}
+	}
+	.splash-logo-wrapper {
+		width: 80%;
+		.logo-typography {
+			font-size: 60px;
+		}
+	}
+}

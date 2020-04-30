@@ -1,0 +1,109 @@
+#MainPage {
+	@include sq(100%);
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	overflow: hidden;
+}
+
+.page-body {
+	width: 100%;
+	height: 100%;
+	@include gradient-summer();
+}
+
+.page-wrapper {
+	transition: all 0.5s ease;
+}
+
+.col-2 {
+	position: relative;
+	@include sq(100%);
+	> .col {
+		float: left;
+		width: 50%;
+		height: 100%;
+		position: relative;
+		&:first-child:before {
+			content: '';
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			width: 1px;
+			height: 100%;
+			@include gradient-sunset(0deg);
+		};
+		&.--center {
+			@include center-flex();
+		}
+		.col-header {
+			width: 100%;
+			display: block;
+		}
+		.col-body {
+			width: 100%;
+			&.--center {
+				height: calc(100% - 250px);
+				@include center-flex();
+			}
+		}
+	}
+}
+
+.heading-wrapper {
+	position: absolute;
+	top: 20px;
+	left: 0px;
+	width: 100%;
+	height: auto;
+	text-align: center;
+	@include fade-in();
+	h2 {
+		font-family: $shrikhand;
+		display: block;
+		color: $midnight;
+	}
+	h4 {
+		display: block;
+		font-size: $fs-xs;
+		color: $black;
+		text-transform: uppercase;
+	}
+}
+
+::-webkit-scrollbar {
+   display: none;
+}
+
+/*responsiveness*/
+
+@include mobile {
+	#MainPage {
+		position: relative;
+	}
+	.page-body {
+		overflow-y: auto;
+	}
+	.page-wrapper {
+		margin-top: 50px;
+	}
+	.col-2 {
+		.col {
+			width: 100%;
+			display: block;
+			overflow-x: scroll;
+			height: calc(50% - 100px);
+			&:first-child:before {
+				content: '';
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				width: 100%;
+				height: 1px;
+				top: unset;
+				right: unset;
+				@include gradient-sunset(270deg);
+			};
+		}
+	}
+}
