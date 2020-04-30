@@ -187,17 +187,3 @@
 		}
 	}
 }
-
-
-.cardscol {
-	float: left;
-	transition: all 0.3s ease;
-	&.--roulette {
-		transition: all 0.3s ease;
-  		animation: roulette 10s;
-	}
-	&:hover.--roulette {
-		animation: none!important;
-		margin-top: 0px;
-	};
-}

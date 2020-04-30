@@ -13,6 +13,11 @@
 }
 
 .page-wrapper {
+	width: 100%;
+    height: 100%;
+}
+
+.page-inner {
 	transition: all 0.5s ease;
 }
 
@@ -84,7 +89,7 @@
 	.page-body {
 		overflow-y: auto;
 	}
-	.page-wrapper {
+	.page-inner {
 		margin-top: 50px;
 	}
 	.col-2 {

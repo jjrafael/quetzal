@@ -4,13 +4,13 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 
 //Components
-import Footer from '../Footer';
+import Footer from '../../Footer';
 
 // actions
-import { editSession, toggleSettingsModal } from '../../actions/session';
+import { editSession, toggleSettingsModal } from '../../../actions/session';
 
 //misc
-import { makeId, getNow, bool } from '../../utils';
+import { bool } from '../../../utils';
 
 const mapStateToProps = state => {
 	return {

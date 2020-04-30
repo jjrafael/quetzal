@@ -6,25 +6,29 @@ import { bindActionCreators } from 'redux';
 //components
 import Header from './Header';
 import Body from './Body';
+import Page from './Page';
 import Loading from './common/Loading';
 import ModalSignOut from './modal/ModalSignOut';
 import ModalEnterCode from './modal/ModalEnterCode';
 import ModalWarning from './modal/ModalWarning';
 import ModalAboutDev from './modal/ModalAboutDev';
 
-// pages
-// import SplashPage from './SplashPage';
-// import HomePage from './HomePage';
+//actions
+import { 
+	setDeviceDetails, 
+	// readSession,
+	toggleWarningModal,
+	toggleLoadingOverlay } from '../actions/session';
 
-// misc
-// import { isMobile } from '../utils/app';
-// import { 
-// 	bool,
-// 	setLocalStorage, 
-// 	getAllLocalStorage,
-// 	clearLocalStorage,
-// 	getResponse } from '../utils';
-// import { variables } from '../config';
+//misc
+import { isMobile } from '../utils/app';
+import { 
+	// bool,
+	setLocalStorage, 
+	getAllLocalStorage,
+	// clearLocalStorage,
+	// getResponse
+} from '../utils';
 
 const mapStateToProps = state => {return {
 	session: state.session.session,
@@ -39,9 +43,9 @@ const mapStateToProps = state => {return {
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators(
 	  {
-		// setDeviceDetails,
-		// toggleLoadingOverlay,
-		// toggleWarningModal,
+		setDeviceDetails,
+		toggleLoadingOverlay,
+		toggleWarningModal,
 		// readSession
 	  },
 	  dispatch
@@ -61,8 +65,43 @@ class Main extends React.Component {
 		}
 	}
 
+	componentDidMount() {
+		const navigator = window.navigator;
+		const cachedIds = getAllLocalStorage();
+		const device = {
+			device: isMobile(navigator.userAgent) ? 'mobile' : 'desktop',
+			platform: navigator.platform,
+			browser: navigator.appCodeName,
+		}
+		this.props.setDeviceDetails(device);
+		this.setState({ device, cachedIds: cachedIds });
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if(prevProps.sessionInitializing !== this.props.sessionInitializing){
+			this.props.toggleLoadingOverlay(this.props.sessionInitializing, 'Initializing Session');
+		}
+
+		if(prevProps.session !== this.props.session && !!this.props.session){
+			//save to local session details
+			if(this.props.session.id && this.props.session.status === 'active'){
+				setLocalStorage('tyr_sessionId', this.props.session.id);
+			}
+		}
+	}
+
+	closeLoading() {
+		//closing loading overlay
+		this.props.toggleLoadingOverlay();
+	}
+
+	updateLoading(data){
+		//update attributes of loading overlay
+		this.props.toggleLoadingOverlay(true, data);
+	}
+
 	render() {
-		const { user, session } = this.props;
+		const { user, session, hasModals } = this.props;
 		const { verifyCacheDone, device, page } = this.state;
 		const isLogged = user && user.is_logged;
 		const isSessionReady = (isLogged && !!session && verifyCacheDone);
@@ -77,7 +116,7 @@ class Main extends React.Component {
 				headerProps={headerProps} 
 				page={page}/>
 			<Body className="app-body">
-				Render page content here
+				<Page hasModals={hasModals} page={page} />
 			</Body>
 			<ModalWarning />
 			<ModalSignOut />

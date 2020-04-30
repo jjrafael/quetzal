@@ -4,24 +4,22 @@ import { bindActionCreators } from 'redux';
 
 // components
 import Footer from './footer';
-import SingleForm from '../forms/SingleForm';
-import Board from '../common/Board';
-import ModalSettings from '../modal/ModalSettings';
+// import ModalSettings from '../../modal/ModalSettings';
 
 //misc
-import {
-	makeId, 
-	getNow, 
-	setLocalStorage, 
-	getAllLocalStorage,
-	getResponse,
-	deleteLocalStorage,
-	pluralizeString,
-	randomNumber, 
-	generateColor,
-	scrollTo
-} from '../../utils';
-import avatars from '../../config/avatars';
+// import {
+// 	makeId, 
+// 	getNow, 
+// 	setLocalStorage, 
+// 	getAllLocalStorage,
+// 	getResponse,
+// 	deleteLocalStorage,
+// 	pluralizeString,
+// 	randomNumber, 
+// 	generateColor,
+// 	scrollTo
+// } from '../../../utils';
+// import avatars from '../../../config/avatars';
 
 const mapStateToProps = state => {return {
 	user: state.session.user,
@@ -47,10 +45,8 @@ class HomePage extends React.Component {
 	componentWillUnmount() {
 		this.unListenData('all');
 	}
+	
 	render() {
-		const { turnOf } = this.props;
-		const { inputData } = this.state;
-
 		return (
 		  <div className={`page-wrapper home-page`}>
 				<div>
