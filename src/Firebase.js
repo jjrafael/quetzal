@@ -5,10 +5,10 @@ import 'firebase/functions';
 // sample firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyCDom3zNrokLi_x-OzFF5FHyzjEJo-wnD8",
-  authDomain: "aliasdecks.firebaseapp.com",
-  databaseURL: "https://aliasdecks.firebaseio.com",
-  projectId: "aliasdecks",
-  storageBucket: "aliasdecks.appspot.com",
+  authDomain: "qtz.firebaseapp.com",
+  databaseURL: "https://qtz.firebaseio.com",
+  projectId: "qtz",
+  storageBucket: "qtz.appspot.com",
   messagingSenderId: "216179747976",
   appId: "1:216179747976:web:09215a6a11ee60ec1fc33d"
 };

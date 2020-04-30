@@ -148,22 +148,6 @@
 	}
 }
 
-.card.alias-card {
-	float: left;
-	margin: 0px 10px 10px 0px;
-	.card-front {
-		background: $cream;
-	}
-	.card-back {
-		color: $white;
-		background: $peach;
-		&:after { border-color: $white; }
-		&.--jinx {
-			background: $coral;
-		}
-	}
-}
-
 .card.grid-card {
 	float: left;
 	margin: 0px 10px 10px 0px;

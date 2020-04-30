@@ -1,4 +1,9 @@
 const menu = {
+	startApp:{
+		id: 'start_app',
+		label: 'Start App',
+		type: 'func'
+	},
 	signOut: {
 		id: 'sign_out',
 		label: 'Quit',
