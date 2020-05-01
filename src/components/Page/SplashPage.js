@@ -14,14 +14,13 @@ import {
 } from '../../actions/session';
 
 //misc
-import { getNow, setLocalStorage } from '../../utils';
+import { getNow } from '../../utils';
 
 const mapStateToProps = state => {
 	return {
 		deviceDetails: state.session.deviceDetails,
 		user: state.session.user,
 		userType: state.session.userType,
-		settings: state.session.settings,
 		sessionDetails: state.sessionDetails,
 		loadingOverlay: state.session.loadingOverlay,
 		initializeError: state.session.initializeError,
@@ -44,7 +43,6 @@ class SplashPage extends React.Component {
 		super(props);
 		this.state = {
 			loadingTitle: 'Initializing Session...',
-			disableRouletteFx: false,
 		}
 	}
 
@@ -66,7 +64,7 @@ class SplashPage extends React.Component {
 	}
 
 	initSession(user) {
-		const { settings } = this.props;
+		console.log('jj initSession1');
 		const now = getNow();
 		const data = {
 			created_by: '',
@@ -78,12 +76,8 @@ class SplashPage extends React.Component {
 	}
 
 	render() {
-		const { loadingOverlay, deviceDetails, hasModals } = this.props;
-		const { disableRouletteFx } = this.state;
-		const isMobile = deviceDetails.device === 'mobile';
-		const rouletteConds = !isMobile && !hasModals && !loadingOverlay && !disableRouletteFx;
+		const { loadingOverlay} = this.props;
 		const showLogo = !loadingOverlay;
-		const cardCount = 20;
 
 	    return (
 	      <div className="page-inner splash-page">
@@ -93,15 +87,15 @@ class SplashPage extends React.Component {
 						<h3>Enter Code</h3>
 					</div>
 				</Card>
-					<Card size="medium" type="splash-cards" className="--pointer">
-					<div className="card-inner f--start-app" onClick={this.initSession}>
+				<Card size="medium" type="splash-cards" className="--pointer">
+					<div className="card-inner f--start-app" onClick={this.initSession.bind(this)}>
 						<h3>Start Session</h3>
 					</div>
 				</Card>
 	      	</div>
 	      	<div className={`splash-logo-wrapper ${showLogo ? '' : 'trans-hide'}`}>
 	      		<div className="logo-typography">
-	      			QUETZAL
+	      			Quetzal
 	      		</div>
 	      	</div>
 	      </div>

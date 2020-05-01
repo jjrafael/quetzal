@@ -85,19 +85,19 @@ class ModalEnterCode extends React.Component {
   }
 
   verifyCode(code) {
-    this.props.verifyCode(code).then(res => {
-      if(!res.error){
-        const data = checkQuerySize(res, true);
-        if(!!data && data[0] && data[0].status === 'inactive'){
-          this.setState({ progressBar: 20 });
-          this.verifySession(data[0]);
-        }else{
-          this.closeLoading('Code was not available anymore');
-        }
-      }else{
-        this.closeLoading('Error while verifying code');
-      }
-    })
+    // this.props.verifyCode(code).then(res => {
+    //   if(!res.error){
+    //     const data = checkQuerySize(res, true);
+    //     if(!!data && data[0] && data[0].status === 'inactive'){
+    //       this.setState({ progressBar: 20 });
+    //       this.verifySession(data[0]);
+    //     }else{
+    //       this.closeLoading('Code was not available anymore');
+    //     }
+    //   }else{
+    //     this.closeLoading('Error while verifying code');
+    //   }
+    // })
   }
 
   closeModal() {

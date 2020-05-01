@@ -26,7 +26,7 @@ class Card extends React.Component {
   }
 
   render() {
-  	const { className, type, size, children, backChildren, flipOver, data } = this.props;
+  	const { className, type, size, children, backChildren, flipOver } = this.props;
     const cx = {
       size: size ? `card-${size}` : 'card-reg',
       card: className || '',
@@ -42,12 +42,6 @@ class Card extends React.Component {
           <div className="card-back">{this.renderCardBack()}</div>
   			</div>
   		break;
-      case 'members-card':
-        html = <div className={`card card-flip-up ${cx.size} ${cx.card} ${cx.type} ${cx.flip}`}>
-          <div className="card-front" style={data && {backgroundColor: data.color}}>{data ? data.name : ''}</div>
-          <div className="card-back">{this.renderCardBack()}</div>
-        </div>
-      break;
   		default:
   			html = <div className={`card ${cx.size} ${cx.card} ${cx.type} ${cx.flip}`}>
           <div className="card-front">{children}</div>

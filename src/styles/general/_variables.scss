@@ -18,6 +18,7 @@ $fs-xxl: 150px;
 /*neutral*/
 $black: rgba(19, 19, 19, 1);
 $white: rgba(255, 255, 255, 1);
+$white-d1: rgba(236, 236, 236, 1);
 $gray: rgba(142, 142, 142, 1);
 $black-10: rgba(19, 19, 19, 0.1);
 $white-10: rgba(255, 255, 255, 0.1);
@@ -28,7 +29,7 @@ $white-50: rgba(255, 255, 255, 0.5);
 $gray-50: rgba(142, 142, 142, 0.5);
 
 /*extended colors*/
-$bg: #5e4b60;
+$bg: $white-d1;
 $midnight: #140019;
 $aqua: #33ff8f;
 $aqua-dark: #25b365;
